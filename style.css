@@ -2,6 +2,7 @@
 body {
     margin: 0;
     overflow: hidden;
+    font-family: sans-serif;
 }
 
 #canvas-container {
@@ -16,11 +17,33 @@ body {
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
-    font-family: sans-serif;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #D3D7DB;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 0.8em;
+}
+
+#footer a {
+    color: #667581;
+}
+
+#footer a:hover {
+    color: white;
+}
+
+#footer p {
+    margin: 5px;
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 3.5em;
     font-weight: bold;
     margin: 0;
 }
@@ -28,4 +51,43 @@ h1 {
 p {
     font-size: 1.2em;
     margin-top: 10px;
+}
+
+.funnel-display {
+    font-family: "Funnel Display", serif; 
+    font-weight: 500;
+    font-style: normal;
+}
+
+.outfit {
+  font-family: "Outfit", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+
+.outfit-small {
+  font-family: "Outfit", serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 0.9em;
+}
+
+.social-links {
+    text-align: center;
+}
+
+.social-links a {
+    display: inline-block;
+}
+
+.social-links img {
+    width: 24px;
+    height: 24px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.social-links img:hover {
+    opacity: 1;
 }
