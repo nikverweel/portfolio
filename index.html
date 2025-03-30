@@ -6,24 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nik Verweel</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 
     <!-- Font imports from Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;500;700&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Favico selection based on light/dark mode -->
+    <link rel="icon" href="icons/favicon-light.svg" media="(prefers-color-scheme: light)">
+    <link rel="icon" href="icons/favicon-dark.svg" media="(prefers-color-scheme: dark)">
 </head>
 
 <body>
     <header>
-        <div class="header">
-            <div class="centered">
-                <h1>Nik Verweel</h1> 
-            </div>  
-            <div class="settings">
-                <p>Test</p>
-                <p>Test2</p>
-            </div>
+        <div class="logo-lang-nightmode">
+            <h1>Nik Verweel</h1>
+            <div class ="lang-nightmode-buttons">
+                <button>EN</button>
+                <button><img src="icons/sun-light.svg" alt = "Light Mode"></button>
+            </div>    
         </div>
+        <nav>
+            <ul>
+                <li><a href="#">Education</a></li>
+                <li><a href="#">Experience</a></li>
+                <li><a href="#">News</a></li>
+            </ul>
+        </nav>
     </header>
 
     <footer>
@@ -32,3 +42,5 @@
 </body>
 
 </html>
+
+<!-- IF PAGE < 600 px wide, Nik Verweel becomes logo, and stack menu items vertically instead of horizontally -->
