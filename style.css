@@ -1,12 +1,14 @@
 /* style.css */
 body {
     margin: 0;
-    background-color: #2f3e46;
+    background-color: var(--dark-background);
+    color: var(--light-text);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
+    min-width: 400px;
     overflow: hidden;
 }
 
@@ -21,7 +23,6 @@ h1 {
     font-family: "Funnel Display", sans-serif;
     font-weight: 600;
     font-size: 3em;
-    color: #CAD2C5;
     text-align: center;
     margin: 0;
 }
@@ -29,7 +30,6 @@ h1 {
 p {
     font-family: "Outfit", sans-serif;
     font-weight: 300;
-    color: #CAD2C5;
     text-align: center;
     margin-top: 10px;
 }
@@ -38,6 +38,7 @@ nav {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    margin-bottom: 20px;
     width: 100%;
 }
 
@@ -50,7 +51,7 @@ nav ul {
 }
 
 nav ul li a {
-    color: #CAD2C5;
+    color: var(--light-text);
     text-decoration: none;
     font-family: "Outfit", sans-serif;
     font-weight: 350;
@@ -67,14 +68,14 @@ nav ul li a:hover {
 footer {
     width: 100%;
     text-align: center;
-    color: #CAD2C5;
+    color: var(--light-text);
     font-family: "Outfit", sans-serif;
     position: absolute;
     bottom: 0;
     opacity: 60%;
 }
 
-.logo-lang-nightmode {
+.logo-nightmode {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -82,18 +83,18 @@ footer {
     padding-top: 20px;
 }
 
-.lang-nightmode-buttons {
+.nightmode-button {
     position: absolute;
-    top: 45%;
+    top: 42%;
     right: 20px;
     gap: 10px;
     align-items: center;
 }
 
-.lang-nightmode-buttons button {
+.nightmode-button button {
     background-color: transparent;
     border: 0px;
-    color: #CAD2C5;
+    color: var(--light-text);
     padding: 8px 10px;
     border-radius: 5px;
     cursor: pointer;
@@ -102,12 +103,37 @@ footer {
     font-size: 0.8em;
 }
 
-.lang-nightmode-buttons button:hover {
+.nightmode-button button:hover {
     background-color: rgba(202, 210, 197, 0.2);
 }
 
-.lang-nightmode-buttons button img {
-    height: 14px;
+.nightmode-button button img {
+    height: 20px;
     width: auto;
     vertical-align: middle;
+}
+
+#header-logo {
+    height: 50px;
+    margin-top: 10px;
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    #header-title {
+        display: none;
+    }
+
+    #header-logo {
+        display: block !important;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin-bottom: 10px;
+    }
 }
