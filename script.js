@@ -1,65 +1,62 @@
 // script.js
 document.addEventListener('DOMContentLoaded', () => {
-    // Get elements from HTML
-    const body = document.body;
+
+    // --- DOM Elements ---
+    const htmlElement = document.documentElement;
+    const themeToggleButton = document.getElementById('theme-toggle');
+    const themeToggleIcon = document.getElementById('theme-toggle-icon');
     const headerLogo = document.getElementById('header-logo');
-    const nightButton = document.querySelector('.nightmode-button button');
-    const htmlElement = document.querySelector('html'); 
 
-    // Define CSS variables
-    const cssVariableNames = [
-        "--dark-background",
-        "--light-text"
-    ];
+    // --- Icon and logo paths ---
+    const lightThemeIcon = 'icons/sun-light.svg'
+    const darkThemeIcon = 'icons/moon-dark.png'
+    const lightLogo = 'res/logo-light.svg'
+    const darkLogo = 'res/logo-dark.svg'
 
-    // Function for light mode
-    function lightMode() {
-        // Change colours etc
-        nightButton.querySelector('img').src = "icons/moon-dark.png";
-        nightButton.querySelector('alt') = "Light Mode";
-        localStorage.setItem('theme', 'light');
-        htmlElement.setAttribute('data-theme', 'light');
-
-        // Set CSS Variables
-        document.documentElement.style.setProperty(cssVariableNames[0], '#CAD2C5');
-        document.documentElement.style.setProperty(cssVariableNames[1], '#2f3e46');
-
+    // --- Theme function ---
+    function applyTheme(theme) {
+        if (theme === 'light') {
+            // Set theme to light
+            htmlElement.removeAttribute('data-theme');
+            themeToggleIcon.src = darkThemeIcon;
+            themeToggleIcon.alt = "Switch to dark mode";
+            if (headerLogo) headerLogo.src = darkLogo;
+            localStorage.setItem('theme', 'light');
+        } else {
+            // Set theme to dark
+            htmlElement.setAttribute('data-theme', 'dark');
+            themeToggleIcon.src = lightThemeIcon;
+            themeToggleIcon.alt = "Switch to light mode";
+            if (headerLogo) headerLogo.src = lightLogo;
+            localStorage.setItem('theme', 'dark')
+        }
     }
 
-    // Function for dark mode
-    function darkMode() {
-        // Change colours etc
-        nightButton.querySelector('img').src = "icons/sun-light.svg";
-        nightButton.querySelector('alt') = "Dark Mode";
-        localStorage.setItem('theme', 'dark');
-        htmlElement.setAttribute('data-theme', 'dark');
+    // --- Initial theme setup ---
 
-        // Set CSS Variables
-        document.documentElement.style.setProperty(cssVariableNames[0], '#2f3e46');
-        document.documentElement.style.setProperty(cssVariableNames[1], '#CAD2C5');
+    // Check localStorage
+    const savedTheme = localStorage.getItem('theme');
 
-    }
+    // Check system preferences
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let currentTheme;
 
-    // Set mode automatically based on application preference
-    if (localStorage.getItem('theme') === 'light') {
-        lightMode();
-    } else if (localStorage.getItem('theme') === 'dark') {
-        darkMode();
+    if (savedTheme) {
+        currentTheme = savedTheme;
     } else {
-        // Check system preference
-        if (window.matchMedia('(prefers-color-scheme: light)').matches) {
-            lightMode();
-        } else {
-            darkMode();
-        }
+        // Set default theme based on system preferences
+        currentTheme = prefersDark ? 'dark' : 'light';
     }
 
-    // Change modes on click
-    nightButton.addEventListener('click', () => {
-        if (nightButton.querySelector('img').src === "icons/sun-light.svg") {
-            darkMode();
-        } else {
-            lightMode();
-        }
+    // Apply theme on initial load
+    applyTheme(currentTheme);
+
+    // --- Event listener for toggle theme button ---
+    themeToggleButton.addEventListener('click', () => {
+        // Check the current theme
+        const isDarkMode = htmlElement.hasAttribute('data-theme');
+        // Toggle the opposite theme
+        applyTheme(isDarkMode ? 'light' : 'dark');
     });
+
 });

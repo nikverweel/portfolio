@@ -1,47 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nik Verweel</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nik Verweel</title>
 
-    <!-- Font imports from Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;500;700&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+        <!-- Source files -->
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
 
-    <!-- Favico selection based on light/dark mode -->
-    <link rel="icon" href="icons/favicon-light.svg" media="(prefers-color-scheme: light)">
-    <link rel="icon" href="icons/favicon-dark.svg" media="(prefers-color-scheme: dark)">
-</head>
+        <!-- Font imports from Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300;500;700&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
 
-<body>
-    <header>
-        <div class="logo-nightmode">
-            <h1 id="header-title">Nik Verweel</h1>
-            <img id="header-logo" src="res/logo-light.svg" alt="Nik Verweel Logo">
-            <div class="nightmode-button">
-                <button><img src="icons/sun-light.svg" alt="Light Mode"></button>
+        <!-- Favico selection based on light/dark mode -->
+        <link rel="icon" href="icons/favicon-light.svg" media="(prefers-color-scheme: light)">
+        <link rel="icon" href="icons/favicon-dark.svg" media="(prefers-color-scheme: dark)">
+    </head>
+
+    <body>
+        <div id="background-left" class="background-svgs"></div>
+        <div id="background-right" class="background-svgs"></div>
+
+        <header>
+            <div class="logo">
+                <h1 id="header-title">Nik Verweel</h1>
+                <div id="header-logo-container">
+                    <img id="header-logo" src="res/logo-dark.svg" alt="Nik Verweel Logo">
+                </div>
+                <div class="nightmode-button">
+                    <button id="theme-toggle">
+                        <img id="theme-toggle-icon" src="icons/moon-dark.png" alt="Toggle Theme Icon">
+                    </button>
+                </div> 
             </div>    
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Education</a></li>
-                <li><a href="#">Experience</a></li>
-                <li><a href="#">News</a></li>
-            </ul>
-        </nav>
-    </header>
+            <nav>
+                <ul>
+                    <li><a href="#">Education</a></li>
+                    <li><a href="#">Experience</a></li>
+                    <li><a href="#">News</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    <footer>
-        <p>&copy; 2025 Nik Verweel. All rights reserved.</p> 
-        <p>Icons by <a href="https://icons8.com/">Icons8</a></p>       
-    </footer> 
-</body>
+        <main>
+            <section>
+                <h2>Placholder Section</h2>
+                <p>Placeholder paragraph</p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Nik Verweel. All rights reserved.</p> 
+            <p>Icons by <a href="https://icons8.com/" target="_blank">Icons8</a></p>       
+        </footer> 
+
+    </body>
 
 </html>
-
-<!-- IF PAGE < 600 px wide, Nik Verweel becomes logo, and stack menu items vertically instead of horizontally -->
