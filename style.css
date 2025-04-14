@@ -3,14 +3,18 @@
     --background-colour: #CAD2C5;   /* Light background */
     --text-colour: #2f3e46;         /* Dark text */
     --button-hover-bg: rgba(47, 62, 70, 0.1);
-    --footer-opacity: 0.6;
     --contour-colour: #2f3e46;
+    --content-box-colour: rgba(183, 191, 179, 0.5);
 
     /* Background variables */
     --background-width-left: 1000px;
     --background-width-right: 1500px;
     --background-left-svg: url('res/contour-1-dark.svg');
     --background-right-svg: url('res/contour-1-dark.svg');
+
+    /* Icons */
+    --linkedin-icon: url('icons/linkedin-dark.svg');
+    --github-icon: url('icons/github-dark.svg');
 }
 
 html[data-theme="dark"] {
@@ -18,10 +22,15 @@ html[data-theme="dark"] {
     --text-colour: #CAD2C5;         /* Light text */
     --button-hover-bg: rgba(202, 210, 197, 0.2);
     --contour-colour: #CAD2C5;
+    --content-box-colour: rgba(64, 85, 96, 0.5);
 
     /* Background variables */
     --background-left-svg: url('res/contour-1-light.svg');
     --background-right-svg: url('res/contour-1-light.svg');
+
+    /* Icons */
+    --linkedin-icon: url('icons/linkedin-light.svg');
+    --github-icon: url('icons/github-light.svg');
 }
 
 body {
@@ -46,6 +55,9 @@ main {
     box-sizing: border-box;
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 header {
@@ -55,6 +67,7 @@ header {
     align-items: center;
     position: relative;
     z-index: 1;
+    margin-bottom: 15px;
 }
 
 .logo {
@@ -143,24 +156,6 @@ nav ul li a:hover {
     background-color: var(--button-hover-bg);
 }
 
-
-main p {
-    text-align: center;
-    margin-top: 16px;
-}
-
-main section {
-    margin-top: 40px;
-}
-
-main h2 {
-    font-family: "Funnel Display", sans-serif;
-    font-weight: 400;
-    font-size: 2em;
-    margin-bottom: 16px;
-    text-align: center;
-}
-
 footer {
     width: 100%;
     text-align: center;
@@ -169,7 +164,6 @@ footer {
     margin-top: auto;
     box-sizing: border-box;
     font-size: 0.8em;
-    opacity: var(--footer-opacity);
     position: relative;
     z-index: 1;
 }
@@ -177,15 +171,37 @@ footer {
 footer p {
     margin: 0;
     font-family: "Outfit", sans-serif;
+    opacity: 0.6;
 }
 
 footer a {
     color: var(--text-colour);
     text-decoration: underline;
+    opacity: 0.6;
 }
 
 footer a:hover {
-    opacity: 0.2;
+    opacity: 1;
+}
+
+.social-links {
+    text-align: center;
+    z-index: 1;
+}
+
+.social-links a {
+    display: inline-block;
+}
+
+.social-links img {
+    width: 30px;
+    height: 30px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.social-links img:hover {
+    opacity: 1;
 }
 
 .background-svgs {
@@ -199,6 +215,38 @@ footer a:hover {
     background-size: contain;
     transition: background-image 0.3s ease;
     opacity: 0.05;
+}
+
+.content-box {
+    width: 90%;
+    max-width: 1400px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: var(--content-box-colour);
+    border-radius: 15px;
+    backdrop-filter: blur(8px);
+    -webkit-background-filter: blur(5px); 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    z-index: 1;
+    color: var(--text-colour);
+}
+
+.content-box h2 {
+    font-family: "Funnel Display", sans-serif;
+    font-weight: 400;
+    font-size: 2em;
+    margin: 0 0 20px 0;
+    text-align: left;
+    color: inherit;
+}
+
+.content-box p {
+    font-family: "Outfit", sans-serif;
+    font-size: 1em;
+    line-height: 1.6;
+    text-align: left;
+    margin-bottom: 15px;
 }
 
 #background-left {
@@ -226,7 +274,7 @@ html[data-theme="dark"] #background-right {
     background-image: var(--background-right-svg);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
     #header-title {
         display: none;
     }
@@ -244,6 +292,11 @@ html[data-theme="dark"] #background-right {
         align-items: center;
         gap: 10px;
         margin-top: 10px;
+    }
+
+    #background-right {
+        right: -1000px;
+
     }
 
 }

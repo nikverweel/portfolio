@@ -13,6 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightLogo = 'res/logo-light.svg'
     const darkLogo = 'res/logo-dark.svg'
 
+    // --- Social icons --- 
+    const linkedinIcon = document.getElementById('linkedin-icon');
+    const githubIcon = document.getElementById('github-icon');
+    const linkedDark = 'icons/linkedin-dark.svg'
+    const linkedLight = 'icons/linkedin-light.svg'
+    const githubDark = 'icons/github-dark.svg'
+    const githubLight = 'icons/github-light.svg'
+
     // --- Theme function ---
     function applyTheme(theme) {
         if (theme === 'light') {
@@ -21,6 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
             themeToggleIcon.src = darkThemeIcon;
             themeToggleIcon.alt = "Switch to dark mode";
             if (headerLogo) headerLogo.src = darkLogo;
+            linkedinIcon.src = linkedDark;
+            githubIcon.src = githubDark;
             localStorage.setItem('theme', 'light');
         } else {
             // Set theme to dark
@@ -28,6 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
             themeToggleIcon.src = lightThemeIcon;
             themeToggleIcon.alt = "Switch to light mode";
             if (headerLogo) headerLogo.src = lightLogo;
+            linkedinIcon.src = linkedLight;
+            githubIcon.src = githubLight;
             localStorage.setItem('theme', 'dark')
         }
     }
