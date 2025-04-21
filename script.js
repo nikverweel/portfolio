@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleButton = document.getElementById('theme-toggle');
     const themeToggleIcon = document.getElementById('theme-toggle-icon');
     const headerLogo = document.getElementById('header-logo');
+    const header = document.querySelector('header');
+    const contentBoxes = document.querySelectorAll('.content-box');
+    const scrollTopButton = document.getElementById('scroll-top');
+    const navLinks = document.querySelectorAll('nav ul li a');
 
     // --- Icon and logo paths ---
     const lightThemeIcon = 'icons/sun-light.svg'
@@ -16,10 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Social icons --- 
     const linkedinIcon = document.getElementById('linkedin-icon');
     const githubIcon = document.getElementById('github-icon');
+    const emailIcon = document.getElementById('email-icon');
     const linkedDark = 'icons/linkedin-dark.svg'
     const linkedLight = 'icons/linkedin-light.svg'
     const githubDark = 'icons/github-dark.svg'
     const githubLight = 'icons/github-light.svg'
+    const emailLight = 'icons/email-light.png'
+    const emailDark = 'icons/email-dark.png'
 
     // --- Theme function ---
     function applyTheme(theme) {
@@ -30,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             themeToggleIcon.alt = "Switch to dark mode";
             if (headerLogo) headerLogo.src = darkLogo;
             linkedinIcon.src = linkedDark;
+            emailIcon.src = emailDark;
             githubIcon.src = githubDark;
             localStorage.setItem('theme', 'light');
         } else {
@@ -39,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             themeToggleIcon.alt = "Switch to light mode";
             if (headerLogo) headerLogo.src = lightLogo;
             linkedinIcon.src = linkedLight;
+            emailIcon.src = emailLight;
             githubIcon.src = githubLight;
             localStorage.setItem('theme', 'dark')
         }
@@ -69,6 +78,86 @@ document.addEventListener('DOMContentLoaded', () => {
         const isDarkMode = htmlElement.hasAttribute('data-theme');
         // Toggle the opposite theme
         applyTheme(isDarkMode ? 'light' : 'dark');
+    });
+
+    // --- Header slide-in animation on load ---
+    setTimeout(() => {
+        header.classList.remove('header-initial');
+        header.classList.add('header-animated');
+    }, 100);
+
+    // --- Content box fade-in on scroll ---
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.25
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    contentBoxes.forEach(box => {
+        observer.observe(box);
+    });
+
+    // --- Sticky header blur and scroll-to-top button ---
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+        // Sticky header blur for desktop
+        if (window.innerWidth > 600) {
+            if (scrollTop > 0) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+        }
+
+        // Scroll-to-top button for mobile
+        if (window.innerWidth <= 600) {
+            if (scrollTop > 100) {
+                scrollTopButton.classList.add('visible');
+            } else {
+                scrollTopButton.classList.remove('visible');
+            }
+        }
+    });
+
+    scrollTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // --- Smooth nav link scrolling ---
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Only apply this behavior on desktop where the header is sticky
+            if (window.innerWidth > 600) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    const headerHeight = header.offsetHeight;
+                    const scrollToPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight - 35;
+
+                    window.scrollTo({
+                        top: scrollToPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+        });
     });
 
 });
