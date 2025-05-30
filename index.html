@@ -4,6 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Portfolio of Nik Verweel, an MSc Geo-information Science student at Wageningen University, showcasing projects, skills, and experience in GIS and land/water management.">
         <title>Nik Verweel</title>
 
         <!-- Source files -->
@@ -47,6 +48,7 @@
         </header>
 
         <main>
+            <!-- About -->
             <section class="content-box">
                 <h2 id="about">About me</h2>
                 <div class="sub-box-container">
@@ -55,7 +57,7 @@
                         <br>
                         <p>With a range of work and extra-curricular <a href="#exp">experience</a>, I consider myself a well-rounded individual. Key personal strengths include efficient and clear <b>communication skills</b>, effective <b>time management</b>, and the ability to <b>work effectively both independently and as part of a team</b>. I am knowledge-driven, always seeking to learn new things and continuously developing my skills. New challenges are always welcome!</p>
                     </div>
-                    <div class="sub-box", id="skills">
+                    <div class="sub-box" id="skills">
                         <div class="skills-box">
                             <h4>Languages</h4>
                             <div class="skills-list">
@@ -77,6 +79,7 @@
                                 <span class="skill">PostgreSQL</span>
                                 <span class="skill">pgAdmin</span>
                                 <span class="skill">TeXstudio</span>
+                                <span class="skill">Adobe Suite</span>
                             </div>
                         </div>
                         <div class="skills-box">
@@ -93,28 +96,132 @@
                         </div>
                     </div>
                     <div class="sub-box">
-                        <img id="portrait", src="res/portrait.png">
+                        <img id="portrait" src="res/portrait.png" alt="Portrait Nik Verweel">
                     </div>
                 </div>
             </section>
+
+            <!-- Education -->
             <section class="content-box">
                 <h2 id="edu">Education</h2>
+                <div class="education-timeline">
+                    <div class="timeline-line-container">
+                        <div class="timeline-line"></div>
+                    </div>
+                    <div class="timeline-events">
+
+                        <!-- MSc -->
+                        <div class="timeline-event" id="msc">
+                            <div class="timeline-event-contents">
+                                <div class="timeline-event-visuals">
+                                    <div class="timeline-point"></div>
+                                    <div class="timeline-label">
+                                        <span class="title">MSc</span>
+                                        <span class="degree">Geo-information Science</span>
+                                        <span class="institution">Wageningen University & Research</span>
+                                        <span class="dates">2023 - Present</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-event-details">
+                                    <h4>MSc Geo-information Science</h4>
+                                    <p><b>GPA:</b> 8.6 / 10</p>
+                                    <p><b>Key courses:</b> Geoscripting, Advanced Earth Observation, Data Management, Software Engineering, Machine Learning</p>
+                                    <p><b>Thesis:</b> Sensing the forest through the trees - <i>A data driven approach to Dutch forest reserve monitoring using AHN</i>.</p>
+                                    <p><b>Extra curriculars:</b> Chair of Board II of <a href="https://sa-artemis.nl/" target="_blank" rel="noopener noreferrer">Study Assocation Artemis</a>, Student member Programme Committee, Student Assistant (see <a href="#exp">Experience</a>).</p>
+                                </div>
+                            </div>
+                        </div>                        
+
+                        <!-- BSc -->
+                        <div class="timeline-event" id="bsc">
+                            <div class="timeline-event-contents">
+                                <div class="timeline-event-visuals">
+                                    <div class="timeline-point"></div>
+                                    <div class="timeline-label">
+                                        <span class="title">BSc</span>
+                                        <span class="degree">International Land and Water Management</span>
+                                        <span class="institution">Wageningen University & Research</span>
+                                        <span class="dates">2019 - 2023</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-event-details">
+                                    <h4>BSc International Land and Water Management</h4>
+                                    <p><b>GPA:</b> 8.1 / 10 (<i>cum laude</i>)</p>
+                                    <p><b>Key courses:</b> Design in International Land and Water Management, Hydraulics and Hydrometry, Statistics, Land & Water Engineering, Water Quantity and Quality</p>
+                                    <p><b>Thesis: </b>Flood hazard in tourism development area Gunjur, the Gambia (see <a href="#exp">Experience</a> or <a href="#news">News</a>).</p>
+                                    <p><b>Extra curriculars:</b> Active member of Study Assocation Nitocra - including Lead Designer of the Almanac, Student Assistant (see <a href="#exp">Experience</a>).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Secondary -->
+                        <div class="timeline-event">
+                            <div class="timeline-event-contents">
+                                <div class="timeline-event-visuals">
+                                    <div class="timeline-point"></div>
+                                    <div class="timeline-label">
+                                        <span class="title">Misc.</span>
+                                        <span class="degree">A-Levels</span>
+                                        <span class="institution">Fairfax Academy, Birmingham (UK)</span>
+                                        <span class="dates">2016 - 2018</span>
+                                    </div>
+                                </div>
+                                <div class="timeline-event-details">
+                                    <h4>A-Levels</h4>
+                                    <p><b>Subjects:</b> Mathmatics, Physics, Computer Science, History (AS-Level)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </section>
+
+            <!-- Experience -->
             <section class="content-box">
                 <h2 id="exp">Experience</h2>
                 <p>Here text about my experience</p>
             </section>
+
+            <!-- News -->
             <section class="content-box">
                 <h2 id="news">News</h2>
                 <div class="sub-box-container">
-                    <div class="news-item", id="h2o-media">
-                        <p>Here text about my education</p>
+                    <div class="news-item">
+                        <div class="news-bg">
+                            <img src="res/h20-media.png" alt="H20 Media Article">
+                            <div class="news-overlay">
+                                <h4>H<sub>2</sub>0 Magazine - In the Picture</h4>
+                                <div class="news-details">
+                                    <p>Interview in H20 Magazine after winning the KNW Bachelor Thesis Award, discussing my combination of International Land and Water Management and Geo-information Science.</p>
+                                    <a href="https://edepot.wur.nl/652583" class="news-button" target="_blank" rel="noopener noreferrer">Read article</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="news-item", id="knw-prijs">
-                        <p>Here text about my education</p>
+                    <div class="news-item">
+                        <div class="news-bg">
+                            <img src="res/knw-prijs.jpeg">
+                            <div class="news-overlay">
+                                <h4>Winner KNW Bachelor Thesis Award</h4>
+                                <div class="news-details">
+                                    <p>Winner of the Royal Dutch Waternetwork BSc thesis award in 2023 with my thesis titled "<em>Flood hazard in tourism development area Gunjur, the Gambia</em>".</p>
+                                    <a href="https://www.waternetwerk.nl/wat-we-doen/netwerk/742-hbo-wo-scriptieprijs-2023" class="news-button" target="_blank" rel="noopener noreferrer">Read more</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="news-item", id="jong-talent">
-                        <p>Here text about my education</p>
+                    <div class="news-item">
+                        <div class="news-bg">
+                            <img src="res/jong-talent.png">
+                            <div class="news-overlay">
+                                <h4>Interview VVM Jong Talent</h4>
+                                <div class="news-details">
+                                    <p>Interview in the <em>Jong Talent</em> (Young Talent) rubric of the <em>Vereniging van Milieuprofessionals</em> (Association of Environmental Professionals) magazine "Milieu".</p>
+                                    <a href="https://milieu.vvm.info/milieu-grenzen-aan-de-groei/jong-talent-nik-verweel/" class="news-button" target="_blank" rel="noopener noreferrer">Read interview</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -122,12 +229,12 @@
 
         <footer>
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/nikverweel/", target="_blank"><img src="icons/linkedin-dark.svg", alt="LinkedIn", id="linkedin-icon"></a>
-                <a href="https://github.com/nikverweel", target="_blank"><img src="icons/github-dark.svg", alt="GitHub", id="github-icon"></a>
-                <a href="mailto:nikverweel@gmail.com"><img src="icons/email-dark.png", alt="Email", id="email-icon"></a>
+                <a href="https://www.linkedin.com/in/nikverweel/" target="_blank"><img src="icons/linkedin-dark.svg" alt="LinkedIn" id="linkedin-icon" rel="noopener noreferrer"></a>
+                <a href="https://github.com/nikverweel" target="_blank" rel="noopener noreferrer"><img src="icons/github-dark.svg" alt="GitHub" id="github-icon"></a>
+                <a href="mailto:nikverweel@gmail.com"><img src="icons/email-dark.png" alt="Email" id="email-icon"></a>
             </div>
             <p>&copy; 2025 Nik Verweel. All rights reserved.</p> 
-            <p>Icons by <a href="https://icons8.com/" target="_blank">Icons8</a></p>       
+            <p>Icons by <a href="https://icons8.com/" target="_blank" rel="noopener noreferrer">Icons8</a></p>       
         </footer>
 
         <button id="scroll-top" class="hidden">&uarr;</button> 
@@ -135,13 +242,3 @@
     </body>
 
 </html>
-
-<!--
-
-Goals:
-- Make scroll 'smooth'
-- Fix so that I can scroll up and down the page
-- Stick header to top of screen with scroll, don't do this with mobile, give 'Back to top' button instead
-- Make scroll animation smooth when clicking on nav bar items
-
--->

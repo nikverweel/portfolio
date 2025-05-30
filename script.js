@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailLight = 'icons/email-light.png'
     const emailDark = 'icons/email-dark.png'
 
+    // --- Education timeline ---
+    const timelineEvents = document.querySelectorAll('.education-timeline .timeline-event');
+
     // --- Theme function ---
     function applyTheme(theme) {
         if (theme === 'light') {
@@ -111,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
         // Sticky header blur for desktop
-        if (window.innerWidth > 600) {
+        if (window.innerWidth > 768) {
             if (scrollTop > 0) {
                 header.classList.add('sticky');
             } else {
@@ -120,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Scroll-to-top button for mobile
-        if (window.innerWidth <= 600) {
+        if (window.innerWidth <= 768) {
             if (scrollTop > 100) {
                 scrollTopButton.classList.add('visible');
             } else {
@@ -140,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             // Only apply this behavior on desktop where the header is sticky
-            if (window.innerWidth > 600) {
+            if (window.innerWidth > 768) {
                 e.preventDefault();
 
                 const targetId = this.getAttribute('href');
@@ -158,6 +161,56 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
         });
+    });
+
+    // --- Education Timeline functioning ---
+    timelineEvents.forEach(event => {
+        const clickableArea = event.querySelector('.timeline-event-visuals');
+
+        if (clickableArea) {
+            clickableArea.addEventListener('click', () => {
+                const isCurrentlyActive = event.classList.contains('active');
+
+                timelineEvents.forEach(otherEvent => {
+                    if (otherEvent !== event && otherEvent.classList.contains('active')) {
+                        otherEvent.classList.remove('active');
+
+                        if (window.innerWidth <= 1000) {
+                            const otherDetails = otherEvent.querySelector('.timeline-event-details');
+                            if (otherDetails) {
+                                otherDetails.style.maxHeight = '0px';
+                            }
+                        }
+                    }
+                });
+
+                if (isCurrentlyActive) {
+                    event.classList.remove('active');
+                    if (window.innerWidth <= 1000) {
+                        const details = event.querySelector('.timeline-event-details');
+                        if (details) {
+                            details.style.maxHeight = '0px';
+                        }
+                    }
+                } else {
+                    event.classList.add('active');
+                    if (window.innerWidth <= 1000) {
+                        const details = event.querySelector('.timeline-details'); 
+                        if (details) {
+                            details.style.maxHeight = 'auto';
+                            const scrollHeight = details.scrollHeight;
+                            details.style.maxHeight = '0px';
+
+                            requestAnimationFrame(() => {
+                                details.style.maxHeight = scrollHeight + 'px';
+                            });
+                        }
+                    }
+                }
+
+            });
+        }
+
     });
 
 });
