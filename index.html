@@ -8,8 +8,10 @@
         <title>Nik Verweel</title>
 
         <!-- Source files -->
+        <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
         <script src="script.js"></script>
+        <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
 
         <!-- Font imports from Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -123,11 +125,9 @@
                                     </div>
                                 </div>
                                 <div class="timeline-event-details">
-                                    <h4>MSc Geo-information Science</h4>
                                     <p><b>GPA:</b> 8.6 / 10</p>
                                     <p><b>Key courses:</b> Geoscripting, Advanced Earth Observation, Data Management, Software Engineering, Machine Learning</p>
                                     <p><b>Thesis:</b> Sensing the forest through the trees - <i>A data driven approach to Dutch forest reserve monitoring using AHN</i>.</p>
-                                    <p><b>Extra curriculars:</b> Chair of Board II of <a href="https://sa-artemis.nl/" target="_blank" rel="noopener noreferrer">Study Assocation Artemis</a>, Student member Programme Committee, Student Assistant (see <a href="#exp">Experience</a>).</p>
                                 </div>
                             </div>
                         </div>                        
@@ -145,11 +145,9 @@
                                     </div>
                                 </div>
                                 <div class="timeline-event-details">
-                                    <h4>BSc International Land and Water Management</h4>
                                     <p><b>GPA:</b> 8.1 / 10 (<i>cum laude</i>)</p>
                                     <p><b>Key courses:</b> Design in International Land and Water Management, Hydraulics and Hydrometry, Statistics, Land & Water Engineering, Water Quantity and Quality</p>
-                                    <p><b>Thesis: </b>Flood hazard in tourism development area Gunjur, the Gambia (see <a href="#exp">Experience</a> or <a href="#news">News</a>).</p>
-                                    <p><b>Extra curriculars:</b> Active member of Study Assocation Nitocra - including Lead Designer of the Almanac, Student Assistant (see <a href="#exp">Experience</a>).</p>
+                                    <p><b>Thesis: </b>Flood hazard in tourism development area Gunjur, the Gambia.</p>
                                 </div>
                             </div>
                         </div>
@@ -167,7 +165,6 @@
                                     </div>
                                 </div>
                                 <div class="timeline-event-details">
-                                    <h4>A-Levels</h4>
                                     <p><b>Subjects:</b> Mathmatics, Physics, Computer Science, History (AS-Level)</p>
                                 </div>
                             </div>
@@ -180,7 +177,9 @@
             <!-- Experience -->
             <section class="content-box">
                 <h2 id="exp">Experience</h2>
-                <p>Here text about my experience</p>
+                <div class="experience-container">
+                    <div id="experience-globe"></div>
+                </div>
             </section>
 
             <!-- News -->

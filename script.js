@@ -81,6 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const isDarkMode = htmlElement.hasAttribute('data-theme');
         // Toggle the opposite theme
         applyTheme(isDarkMode ? 'light' : 'dark');
+        // Change the globe theme
+        if (map) {
+            setMapTheme();
+        }
     });
 
     // --- Header slide-in animation on load ---
@@ -164,53 +168,159 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Education Timeline functioning ---
-    timelineEvents.forEach(event => {
-        const clickableArea = event.querySelector('.timeline-event-visuals');
+    function setupTimelineListeners() {
+    
+        timelineEvents.forEach(event => {
+            const clickableArea = event.querySelector('.timeline-event-visuals');
+            if (clickableArea && clickableArea.eventListener) {
+                clickableArea.removeEventListener('click', clickableArea.eventListener);
+            }
+        });
 
-        if (clickableArea) {
-            clickableArea.addEventListener('click', () => {
-                const isCurrentlyActive = event.classList.contains('active');
+        if (window.innerWidth > 1000) {
+            timelineEvents.forEach(event => {
+                const clickableArea = event.querySelector('.timeline-event-visuals');
 
-                timelineEvents.forEach(otherEvent => {
-                    if (otherEvent !== event && otherEvent.classList.contains('active')) {
-                        otherEvent.classList.remove('active');
+                if (clickableArea) {
+                    // Define the handler function
+                    const eventHandler = () => {
+                        const isCurrentlyActive = event.classList.contains('active');
 
-                        if (window.innerWidth <= 1000) {
-                            const otherDetails = otherEvent.querySelector('.timeline-event-details');
-                            if (otherDetails) {
-                                otherDetails.style.maxHeight = '0px';
+                        // Close all other active events
+                        timelineEvents.forEach(otherEvent => {
+                            if (otherEvent !== event) {
+                                otherEvent.classList.remove('active');
                             }
+                        });
+                        
+                        // Toggle the current event
+                        if (isCurrentlyActive) {
+                            event.classList.remove('active');
+                        } else {
+                            event.classList.add('active');
                         }
-                    }
-                });
+                    };
 
-                if (isCurrentlyActive) {
-                    event.classList.remove('active');
-                    if (window.innerWidth <= 1000) {
-                        const details = event.querySelector('.timeline-event-details');
-                        if (details) {
-                            details.style.maxHeight = '0px';
-                        }
-                    }
-                } else {
-                    event.classList.add('active');
-                    if (window.innerWidth <= 1000) {
-                        const details = event.querySelector('.timeline-details'); 
-                        if (details) {
-                            details.style.maxHeight = 'auto';
-                            const scrollHeight = details.scrollHeight;
-                            details.style.maxHeight = '0px';
-
-                            requestAnimationFrame(() => {
-                                details.style.maxHeight = scrollHeight + 'px';
-                            });
-                        }
-                    }
+                    // Store listener reference and add it
+                    clickableArea.eventListener = eventHandler;
+                    clickableArea.addEventListener('click', eventHandler);
                 }
-
+            });
+        } else {
+            timelineEvents.forEach(event => {
+                event.classList.remove('active');
             });
         }
+    }
 
+    // Initial setup on page load
+    setupTimelineListeners();
+
+    // Re-run when resizing window
+    let resizeTimer;
+
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            setupTimelineListeners();
+        }, 250);
     });
+
+    // --- Experience Globe ---
+    mapboxgl.accessToken = 'pk.eyJ1IjoibmlrdmVyd2VlbCIsImEiOiJjbWJvMnM5czIxbmx2MmpwanJ2N2tqcGJqIn0.yJ4esKuvXvday0EFNVrrHQ';
+
+    // Variables
+    const rotationSpeed = -0.05;
+    const zoomToLevel = 10;      
+    let userInteracted = false;
+    let isSpinning = true; 
+
+    // Project information
+    const projectLocations = [
+        {
+            coordinates: [5.665395, 51.969189],
+            title: 'WUR',
+            description: 'Test description'
+        },
+        {
+            coordinates: [-16.772268, 13.139132],
+            title: 'BSc Thesis in the Gambia',
+            description: '<a href="google.com">Test<a>'
+        }
+    ];
+
+    // Create map
+    const map = new mapboxgl.Map({
+        container: 'experience-globe',
+        projection: 'globe',
+        style: 'mapbox://styles/nikverweel/cmbo2y5th00tl01sc23c168hr',
+        center: [5.200442, 52.158769],
+        zoom: 0.9
+    });
+
+    function spinGlobe() {
+        if (isSpinning && !userInteracted) {
+            const center = map.getCenter();
+            center.lng += rotationSpeed;
+            map.setCenter(center);
+            requestAnimationFrame(spinGlobe);
+        }
+    }
+
+    function addMapElements() {
+        const markerColor = getComputedStyle(document.documentElement).getPropertyValue('--background-colour').trim();
+        
+        // Add markers and popups for each location
+        projectLocations.forEach(location => {
+            const popup = new mapboxgl.Popup({ offset: 25 })
+                .setHTML(`<h3>${location.title}</h3><p>${location.description}</p>`);
+
+            const marker = new mapboxgl.Marker({ color: markerColor })
+                .setLngLat(location.coordinates)
+                .setPopup(popup)
+                .addTo(map);
+
+            marker.getElement().addEventListener('click', () => {
+                userInteracted = true;
+                isSpinning = false;
+
+                map.flyTo({
+                    center: location.coordinates,
+                    zoom: zoomToLevel,
+                    speed: 0.7,
+                    curve: 1.4,
+                    essential: true
+                });
+            });
+
+        });
+    }
+
+    // Change map style based on theme
+    function setMapTheme() {
+        const isDarkMode = document.documentElement.hasAttribute('data-theme');
+        const styleUrl = isDarkMode ? 'mapbox://styles/nikverweel/cmbo43omv00nl01qx3m4aex3e' : 'mapbox://styles/nikverweel/cmbo2y5th00tl01sc23c168hr';
+        map.setStyle(styleUrl);
+    }   
+
+    // Load the map
+    map.on('load', () => {
+        setMapTheme();
+        map.on('style.load', addMapElements);
+
+        // Spin the globe
+        spinGlobe();
+    });
+
+    // Stop spinning on interaction
+    const stopSpinning = () => {
+        userInteracted = true;
+        isSpinning = false;
+    };
+
+    map.on('mousedown', stopSpinning);
+    map.on('touchstart', stopSpinning);
+    map.on('dragstart', stopSpinning);
+    map.on('zoomstart', stopSpinning);
 
 });
