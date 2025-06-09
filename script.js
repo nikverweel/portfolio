@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             coordinates: [-16.772268, 13.139132],
             title: 'BSc Thesis and Internship in the Gambia',
-            description: 'Interhsip as part of my BSc International Land and Water Management at Palm Lake Gunjur, an eco-tourism project aimed at natural regeneration of sand excavation areas. Simultaneously, writing my award-winning BSc thesis "<em>Flood hazard in tourism development area Gunjur, the Gambia</em>", read my thesis <a href="docs/bsc-thesis-nikverweel.pdf" target="_blank" rel="noopener noreferrer">here</a>.'
+            description: 'Internship as part of my BSc International Land and Water Management at Palm Lake Gunjur, an eco-tourism project aimed at natural-based regeneration of sand excavation areas. Simultaneously, writing my award-winning BSc thesis "<em>Flood hazard in tourism development area Gunjur, the Gambia</em>", read my thesis <a href="docs/bsc-thesis-nikverweel.pdf" target="_blank" rel="noopener noreferrer">here</a>.'
         },
         {
             coordinates: [5.665488, 51.987112],
@@ -260,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             coordinates: [3.722533, 51.652916],
             title: 'Academic Consultancy for Antea Group NL',
-            description: 'As part of my MSc Geo-information Science, performed an Academic Consultancy project for Antea Group Netherlands aimed at automated rubble stone detection. Read the report <a href="docs/act-finalreport.pdf">here</a>.'
+            description: 'As part of my MSc Geo-information Science, performed an Academic Consultancy project for Antea Group Netherlands aimed at automated rubble stone detection. Read the report <a href="docs/act-finalreport.pdf" target="_blank" rel="noopener noreferrer">here</a>.'
         },
         {
             coordinates: [5.499818, 52.003074],
