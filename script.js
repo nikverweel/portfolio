@@ -238,14 +238,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // Project information
     const projectLocations = [
         {
-            coordinates: [5.665395, 51.969189],
-            title: 'WUR',
-            description: 'Test description'
+            coordinates: [5.663677, 51.985239],
+            title: 'Student Assistant functions at Wageningen University & Research',
+            description: 'A range of Student Assistant functions during my BSc International Land and Water Management and MSc Geo-information Science at Wageningen University and Research. Helped develop, organise or provided support during practicals in the following courses: Geo-scripting, Geo-information Tools, Advanced Earth Observation, MGI Visualisation Portfolio, Land and Water Engineering, Design in Land and Water Management, Crops and Cropping Systems.'
         },
         {
             coordinates: [-16.772268, 13.139132],
-            title: 'BSc Thesis in the Gambia',
-            description: '<a href="google.com">Test<a>'
+            title: 'BSc Thesis and Internship in the Gambia',
+            description: 'Interhsip as part of my BSc International Land and Water Management at Palm Lake Gunjur, an eco-tourism project aimed at natural regeneration of sand excavation areas. Simultaneously, writing my award-winning BSc thesis "<em>Flood hazard in tourism development area Gunjur, the Gambia</em>", read my thesis <a href="docs/bsc-thesis-nikverweel.pdf" target="_blank" rel="noopener noreferrer">here</a>.'
+        },
+        {
+            coordinates: [5.665488, 51.987112],
+            title: 'S.A. Artemis Board Year',
+            description: 'Chair of Board II of <a href="https://sa-artemis.nl/" target="_blank" rel="noopener noreferrer">Study Assocation Artemis</a> during my MSc Geo-information Science at Wageningen University and Research. As Chair of Board II, increased membership of the association and expanded the number of activities, redesigned the online presence.'
+        },
+        {
+            coordinates: [5.096943, 52.079516],
+            title: 'Waterhandjes - Working student in the Water sector',
+            description: 'A range of projects for <a href="https://www.waterhandjes.nl/" target="_blank" rel="noopener noreferrer">Waterhandjes</a>, including geo-data management at Watershap Limburg and multiple soil map digitisation projects for <a href="https://www.bij12.nl/onderwerp/adviescommissie-schade-grondwater/" target="_blank" rel="noopener noreferrer">ACSG</a>.'
+        },
+        {
+            coordinates: [3.722533, 51.652916],
+            title: 'Academic Consultancy for Antea Group NL',
+            description: 'As part of my MSc Geo-information Science, performed an Academic Consultancy project for Antea Group Netherlands aimed at automated rubble stone detection. Read the report <a href="docs/act-finalreport.pdf">here</a>.'
+        },
+        {
+            coordinates: [5.499818, 52.003074],
+            title: 'MSc Thesis',
+            description: 'Currently in progress, my MSc Thesis "<em>Sensing the forest through the trees, a data driven approach to Dutch forest reserve monitoring using AHN</em>". This thesis aims to explore the possibilities of ALS point clouds for forest reserve monitoring. <a href="https://nikverweel.github.io/dfr_webmap/" target="_blank" rel="noopener noreferrer">This online webmap</a> is part of my thesis.'
         }
     ];
 
@@ -254,8 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
         container: 'experience-globe',
         projection: 'globe',
         style: 'mapbox://styles/nikverweel/cmbo2y5th00tl01sc23c168hr',
-        center: [5.200442, 52.158769],
-        zoom: 0.9
+        zoom: 1
     });
 
     function spinGlobe() {
@@ -287,8 +306,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 map.flyTo({
                     center: location.coordinates,
                     zoom: zoomToLevel,
-                    speed: 0.7,
-                    curve: 1.4,
+                    speed: 0.8,
+                    curve: 1.3,
                     essential: true
                 });
             });
