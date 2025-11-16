@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             coordinates: [5.499818, 52.003074],
             title: 'MSc Thesis',
-            description: 'Currently in progress, my MSc Thesis "<em>Sensing the forest through the trees, a data driven approach to Dutch forest reserve monitoring using AHN</em>". This thesis aims to explore the possibilities of ALS point clouds for forest reserve monitoring. <a href="https://nikverweel.github.io/dfr_webmap/" target="_blank" rel="noopener noreferrer">This online webmap</a> is part of my thesis.'
+            description: 'MSc Thesis "<em>Sensing the forest through the trees, a data driven approach to Dutch forest reserve monitoring using AHN</em>", awarded with a 9.0/10. This thesis aimed to explore the possibilities of ALS point clouds for forest reserve monitoring. <a href="https://nikverweel.github.io/dfr_webmap/" target="_blank" rel="noopener noreferrer">This online webmap</a> is part of my thesis.'
         }
     ];
 
