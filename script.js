@@ -265,7 +265,12 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             coordinates: [5.499818, 52.003074],
             title: 'MSc Thesis',
-            description: 'MSc Thesis "<em>Sensing the forest through the trees, a data driven approach to Dutch forest reserve monitoring using AHN</em>", awarded with a 9.0/10. This thesis aimed to explore the possibilities of ALS point clouds for forest reserve monitoring. <a href="https://nikverweel.github.io/dfr_webmap/" target="_blank" rel="noopener noreferrer">This online webmap</a> is part of my thesis.'
+            description: 'MSc Thesis "<em>Sensing the forest through the trees, a data driven approach to Dutch forest reserve monitoring using AHN</em>", awarded with a 9.0/10. This thesis aimed to explore the possibilities of ALS point clouds for forest reserve monitoring. <a href="https://nikverweel.github.io/dfr_webmap/" target="_blank" rel="noopener noreferrer">This online webmap</a> is part of my thesis. Read the thesis <a href="docs/msc-thesis-nikverweel.pdf" target="_blank" rel="noopener noreferrer">here</a>.'
+        },
+        {
+            coordinates: [5.667986, 51.968629],
+            title: 'MSc Internship - Remote Sensing @ SmartCane',
+            description: 'MSc Internship as Remote Sensing researcher at <a href="https://smartcane.ag/" target="_blank" rel="noopener noreferrer">SmartCane</a>. During my internship explored the possibilities of PlanetScope imagery for the distinction between sugarcane, weeds and gaps during the emergence phase of sugarcane in Tanzania, achieved through the development of Machine Learning models.'
         }
     ];
 
