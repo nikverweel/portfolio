@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Variables
     const rotationSpeed = -0.05;
-    const zoomToLevel = 10;      
+    const zoomToLevel = 14;      
     let userInteracted = false;
     let isSpinning = true; 
 
@@ -274,12 +274,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
+    // Mobile cutoff point
+    const isMobile = window.innerWidth < 900;
+
     // Create map
     const map = new mapboxgl.Map({
         container: 'experience-globe',
         projection: 'globe',
         style: 'mapbox://styles/nikverweel/cmbo2y5th00tl01sc23c168hr',
-        zoom: 1
+        zoom: isMobile ? 0.6 : 1
     });
 
     function spinGlobe() {
@@ -346,5 +349,21 @@ document.addEventListener('DOMContentLoaded', () => {
     map.on('touchstart', stopSpinning);
     map.on('dragstart', stopSpinning);
     map.on('zoomstart', stopSpinning);
+
+    // --- Set current year in footer ---
+    const yearSpan = document.getElementById('year');
+    const currentYear = new Date().getFullYear();
+    yearSpan.textContent = currentYear;
+
+    // --- Clear contact form ---
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', () => {
+            // Wait 1 second to ensure submission starts, then clear fields
+            setTimeout(() => {
+                contactForm.reset();
+            }, 1000);
+        });
+    }
 
 });

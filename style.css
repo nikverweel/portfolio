@@ -544,13 +544,13 @@ h4 {
     display: flex;
     flex-direction: row;
     gap: 30px;
-    min-height: 450px;
+    min-height: 500px;
 }
 
 #experience-globe {
     flex: 2;
     border-radius: 10px;
-    height: 550px;
+    height: 600px;
 }
 
 .experience-list {
@@ -721,6 +721,79 @@ h4 {
     opacity: 0.7;
 }
 
+/* Contact Form Styling */
+.contact-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    text-align: center;;
+}
+
+.contact-container p {
+    text-align: center;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-family: "Outfit", sans-serif;
+    font-weight: 500;
+    font-size: 0.9em;
+    margin-left: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    background-color: var(--sub-box-colour);
+    color: var(--text-colour);
+    font-family: "Outfit", sans-serif;
+    font-size: 1em;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    background-color: var(--sub-box-colour-dark);
+    border-color: var(--text-colour);
+}
+
+.submit-btn {
+    padding: 12px 24px;
+    background-color: var(--text-colour);
+    color: var(--background-colour);
+    border: none;
+    border-radius: 8px;
+    font-family: "Outfit", sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    align-self: flex-start;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
 @media screen and (min-width: 769px) {
     header {
         position: sticky;
@@ -838,7 +911,7 @@ h4 {
     }
 
     #experience-globe {
-        height: 400px;
+        height: 300px;
         width: 100%;
     }
 
@@ -895,6 +968,11 @@ h4 {
         max-height: 600px;
         opacity: 1;
         padding-bottom: 15px;
+    }
+
+    .submit-btn {
+        width: 100%;
+        align-self: center;
     }
 
 }
