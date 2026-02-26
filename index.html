@@ -42,8 +42,9 @@
             <nav>
                 <ul>
                     <li><a href="#about">About me</a></li>
-                    <li><a href="#edu">Education</a></li>
                     <li><a href="#exp">Experience</a></li>
+                    <li><a href="#edu">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
                     <li><a href="#news">News</a></li>
                 </ul>
             </nav>
@@ -55,7 +56,7 @@
                 <h2 id="about">About me</h2>
                 <div class="sub-box-container">
                     <div class="sub-box">
-                        <p>Hi there, I'm <b>Nik Verweel</b>, a second-year student of the <b>MSc Geo-information Science</b> at Wageningen University and Research. I graduated <i>cum laude</i> with my <b>BSc International Land and Water Management</b> and am passionate about exploring the possibilities of combining these two fields, integrating land and water management principles with methods learnt during my MSc programme.</p>
+                        <p>Hi there, I'm <b>Nik Verweel</b>, a third-year student of the <b>MSc Geo-information Science</b> at Wageningen University and Research. I graduated <i>cum laude</i> with my <b>BSc International Land and Water Management</b> and am passionate about exploring the possibilities of combining these two fields, integrating land and water management principles with methods learnt during my MSc programme.</p>
                         <br>
                         <p>With a range of work and extra-curricular <a href="#exp">experience</a>, I consider myself a well-rounded individual. Key personal strengths include efficient and clear <b>communication skills</b>, effective <b>time management</b>, and the ability to <b>work effectively both independently and as part of a team</b>. I am knowledge-driven, always seeking to learn new things and continuously developing my skills. New challenges are always welcome!</p>
                     </div>
@@ -66,22 +67,21 @@
                                 <span class="skill">R</span>
                                 <span class="skill">Python</span>
                                 <span class="skill">SQL</span>
-                                <span class="skill">Java (basics)</span>
-                                <span class="skill">HTML (basics)</span>
-                                <span class="skill">CSS (basics)</span>
-                                <span class="skill">JavaScript (basics)</span>
+                                <span class="skill">HTML</span>
+                                <span class="skill">CSS</span>
+                                <span class="skill">JavaScript</span>
+                                <span class="skill">GDScript (basics)</span>
                             </div>
                         </div>
                         <div class="skills-box">
                             <h4>Software</h4>
                             <div class="skills-list">
+                                <span class="skill">Adobe Suite</span>
                                 <span class="skill">ArcGIS Pro</span>
-                                <span class="skill">ERDAS Imagine</span>
                                 <span class="skill">QGIS</span>
                                 <span class="skill">PostgreSQL</span>
                                 <span class="skill">pgAdmin</span>
                                 <span class="skill">Google Earth Engine</span>
-                                <span class="skill">Adobe Suite</span>
                             </div>
                         </div>
                         <div class="skills-box">
@@ -100,6 +100,14 @@
                     <div class="sub-box">
                         <img id="portrait" src="res/portrait.png" alt="Portrait Nik Verweel">
                     </div>
+                </div>
+            </section>
+
+            <!-- Experience -->
+            <section class="content-box">
+                <h2 id="exp">Experience</h2>
+                <div class="experience-container">
+                    <div id="experience-globe"></div>
                 </div>
             </section>
 
@@ -174,11 +182,33 @@
                 </div>
             </section>
 
-            <!-- Experience -->
+            <!-- Contact -->
             <section class="content-box">
-                <h2 id="exp">Experience</h2>
-                <div class="experience-container">
-                    <div id="experience-globe"></div>
+                <h2 id="contact">Contact me</h2>
+                <div class="contact-container">
+                    <p>I'm always looking for fun new projects and challenges. Do you have a question, want to work together or need something done? Send me a messagae via the form below. Let's get in touch!</p>
+                    
+                    <form action="https://formspree.io/f/mwvbanga" method="POST" class="contact-form" target="_blank">
+                        
+                        <input type="hidden" name="_next" value="http://localhost:5500/thanks.html">
+                        
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Your name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="Your email address">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="How can I help you?"></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
                 </div>
             </section>
 
@@ -232,7 +262,7 @@
                 <a href="https://github.com/nikverweel" target="_blank" rel="noopener noreferrer"><img src="icons/github-dark.svg" alt="GitHub" id="github-icon"></a>
                 <a href="mailto:nikverweel@gmail.com"><img src="icons/email-dark.png" alt="Email" id="email-icon"></a>
             </div>
-            <p>&copy; 2025 Nik Verweel. All rights reserved.</p> 
+            <p>&copy; <span id="year">2025</span> Nik Verweel. All rights reserved.</p> 
             <p>Icons by <a href="https://icons8.com/" target="_blank" rel="noopener noreferrer">Icons8</a></p>       
         </footer>
 
