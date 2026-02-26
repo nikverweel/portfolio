@@ -7,11 +7,27 @@
         <meta name="description" content="Portfolio of Nik Verweel, an MSc Geo-information Science student at Wageningen University, showcasing projects, skills, and experience in GIS and land/water management.">
         <title>Nik Verweel</title>
 
+        <script>
+            (function() {
+                const savedTheme = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+                if (initialTheme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    document.documentElement.style.colorScheme = 'dark';
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    document.documentElement.style.colorScheme = 'light';
+                }
+            })();
+        </script>
+
         <!-- Source files -->
-        <link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+        <link rel="preload" href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet"></noscript>
         <link rel="stylesheet" href="style.css">
-        <script src="script.js"></script>
-        <script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+        <script defer src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+        <script defer src="script.js"></script>
 
         <!-- Font imports from Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,7 +72,7 @@
                 <h2 id="about">About me</h2>
                 <div class="sub-box-container">
                     <div class="sub-box">
-                        <p>Hi there, I'm <b>Nik Verweel</b>, a third-year student of the <b>MSc Geo-information Science</b> at Wageningen University and Research. I graduated <i>cum laude</i> with my <b>BSc International Land and Water Management</b> and am passionate about exploring the possibilities of combining these two fields, integrating land and water management principles with methods learnt during my MSc programme.</p>
+                        <p>Hi there, I'm <b>Nik Verweel</b>, a junior project coordinator at Vialis and recent <em>cum laude</em> graduate of the <b>MSc Geo-information Science</b> at Wageningen University and Research. I graduated <i>cum laude</i> with my <b>BSc International Land and Water Management</b> and am passionate about exploring the possibilities of combining these two fields, integrating land and water management principles with methods learnt during my MSc programme.</p>
                         <br>
                         <p>With a range of work and extra-curricular <a href="#exp">experience</a>, I consider myself a well-rounded individual. Key personal strengths include efficient and clear <b>communication skills</b>, effective <b>time management</b>, and the ability to <b>work effectively both independently and as part of a team</b>. I am knowledge-driven, always seeking to learn new things and continuously developing my skills. New challenges are always welcome!</p>
                     </div>
@@ -108,6 +124,10 @@
                 <h2 id="exp">Experience</h2>
                 <div class="experience-container">
                     <div id="experience-globe"></div>
+                    <div class="experience-list">
+                        <h4>Experience index</h4>
+                        <ul id="experience-index"></ul>
+                    </div>
                 </div>
             </section>
 
@@ -129,11 +149,11 @@
                                         <span class="title">MSc</span>
                                         <span class="degree">Geo-information Science</span>
                                         <span class="institution">Wageningen University & Research</span>
-                                        <span class="dates">2023 - Current</span>
+                                        <span class="dates">2023 - 2026</span>
                                     </div>
                                 </div>
                                 <div class="timeline-event-details">
-                                    <p><b>GPA:</b> 8.6 / 10</p>
+                                    <p><b>GPA:</b> 8.7 / 10 (<i>cum laude</i>)</p>
                                     <p><b>Key courses:</b> Geoscripting, Advanced Earth Observation, Data Management, Software Engineering, Machine Learning</p>
                                     <p><b>Thesis:</b> Sensing the forest through the trees - <i>A data driven approach to Dutch forest reserve monitoring using AHN</i>.</p>
                                 </div>
@@ -218,7 +238,7 @@
                 <div class="sub-box-container">
                     <div class="news-item">
                         <div class="news-bg">
-                            <img src="res/h20-media.png" alt="H20 Media Article">
+                            <img src="res/h20-media.png" alt="H20 Media Article" loading="lazy" decoding="async">
                             <div class="news-overlay">
                                 <h4>H<sub>2</sub>0 Magazine - In the Picture</h4>
                                 <div class="news-details">
@@ -230,7 +250,7 @@
                     </div>
                     <div class="news-item">
                         <div class="news-bg">
-                            <img src="res/knw-prijs.jpeg">
+                            <img src="res/knw-prijs.jpeg" loading="lazy" decoding="async" alt="KNW Bachelor Thesis Award">
                             <div class="news-overlay">
                                 <h4>Winner KNW Bachelor Thesis Award</h4>
                                 <div class="news-details">
@@ -242,7 +262,7 @@
                     </div>
                     <div class="news-item">
                         <div class="news-bg">
-                            <img src="res/jong-talent.png">
+                            <img src="res/jong-talent.png" loading="lazy" decoding="async" alt="VVM Jong Talent Interview">
                             <div class="news-overlay">
                                 <h4>Interview VVM Jong Talent</h4>
                                 <div class="news-details">
@@ -258,9 +278,9 @@
 
         <footer>
             <div class="social-links">
-                <a href="https://www.linkedin.com/in/nikverweel/" target="_blank"><img src="icons/linkedin-dark.svg" alt="LinkedIn" id="linkedin-icon" rel="noopener noreferrer"></a>
-                <a href="https://github.com/nikverweel" target="_blank" rel="noopener noreferrer"><img src="icons/github-dark.svg" alt="GitHub" id="github-icon"></a>
-                <a href="mailto:nikverweel@gmail.com"><img src="icons/email-dark.png" alt="Email" id="email-icon"></a>
+                <a href="https://www.linkedin.com/in/nikverweel/" target="_blank" rel="noopener noreferrer"><img src="icons/linkedin-dark.svg" alt="LinkedIn" id="linkedin-icon" loading="lazy" decoding="async"></a>
+                <a href="https://github.com/nikverweel" target="_blank" rel="noopener noreferrer"><img src="icons/github-dark.svg" alt="GitHub" id="github-icon" loading="lazy" decoding="async"></a>
+                <a href="mailto:nikverweel@gmail.com"><img src="icons/email-dark.png" alt="Email" id="email-icon" loading="lazy" decoding="async"></a>
             </div>
             <p>&copy; <span id="year">2025</span> Nik Verweel. All rights reserved.</p> 
             <p>Icons by <a href="https://icons8.com/" target="_blank" rel="noopener noreferrer">Icons8</a></p>       

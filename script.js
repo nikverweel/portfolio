@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const contentBoxes = document.querySelectorAll('.content-box');
     const scrollTopButton = document.getElementById('scroll-top');
     const navLinks = document.querySelectorAll('nav ul li a');
+    const experienceIndex = document.getElementById('experience-index');
+    const experienceGlobe = document.getElementById('experience-globe');
 
     // --- Icon and logo paths ---
     const lightThemeIcon = 'icons/sun-light.svg'
@@ -36,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (theme === 'light') {
             // Set theme to light
             htmlElement.removeAttribute('data-theme');
+            htmlElement.style.colorScheme = 'light';
             themeToggleIcon.src = darkThemeIcon;
             themeToggleIcon.alt = "Switch to dark mode";
             if (headerLogo) headerLogo.src = darkLogo;
@@ -46,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             // Set theme to dark
             htmlElement.setAttribute('data-theme', 'dark');
+            htmlElement.style.colorScheme = 'dark';
             themeToggleIcon.src = lightThemeIcon;
             themeToggleIcon.alt = "Switch to light mode";
             if (headerLogo) headerLogo.src = lightLogo;
@@ -134,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 scrollTopButton.classList.remove('visible');
             }
         }
-    });
+    }, { passive: true });
 
     scrollTopButton.addEventListener('click', () => {
         window.scrollTo({
@@ -227,13 +231,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Experience Globe ---
-    mapboxgl.accessToken = 'pk.eyJ1IjoibmlrdmVyd2VlbCIsImEiOiJjbWJvMnM5czIxbmx2MmpwanJ2N2tqcGJqIn0.yJ4esKuvXvday0EFNVrrHQ';
-
     // Variables
     const rotationSpeed = -0.05;
     const zoomToLevel = 14;      
     let userInteracted = false;
     let isSpinning = true; 
+    let mapMarkers = [];
+    let activePopup = null;
+    let map = null;
+    let hasInitializedMap = false;
 
     // Project information
     const projectLocations = [
@@ -270,22 +276,54 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             coordinates: [5.667986, 51.968629],
             title: 'MSc Internship - Remote Sensing @ SmartCane',
-            description: 'MSc Internship as Remote Sensing researcher at <a href="https://smartcane.ag/" target="_blank" rel="noopener noreferrer">SmartCane</a>. During my internship explored the possibilities of PlanetScope imagery for the distinction between sugarcane, weeds and gaps during the emergence phase of sugarcane in Tanzania, achieved through the development of Machine Learning models.'
+            description: 'MSc Internship as Remote Sensing researcher at <a href="https://smartcane.ag/" target="_blank" rel="noopener noreferrer">SmartCane</a>. During my internship explored the possibilities of PlanetScope imagery for the distinction between sugarcane, weeds and gaps during the emergence phase of sugarcane in Tanzania, achieved through the development of Machine Learning models. Read my report <a href="docs/msc-internshipreport-nikverweel.pdf" target="_blank">here</a>'
+        },
+        {
+            coordinates: [5.1492017, 52.0220347],
+            title: 'Project coordinator @ Vialis',
+            description: '2026 - <em>current</em>. Function as project coordinator in managament and maintanence tunnels at Vialis.'
         }
     ];
 
-    // Mobile cutoff point
-    const isMobile = window.innerWidth < 900;
+    function initializeMap() {
+        if (hasInitializedMap || !experienceGlobe || typeof mapboxgl === 'undefined') {
+            return;
+        }
 
-    // Create map
-    const map = new mapboxgl.Map({
-        container: 'experience-globe',
-        projection: 'globe',
-        style: 'mapbox://styles/nikverweel/cmbo2y5th00tl01sc23c168hr',
-        zoom: isMobile ? 0.6 : 1
-    });
+        hasInitializedMap = true;
+        mapboxgl.accessToken = 'pk.eyJ1IjoibmlrdmVyd2VlbCIsImEiOiJjbWJvMnM5czIxbmx2MmpwanJ2N2tqcGJqIn0.yJ4esKuvXvday0EFNVrrHQ';
+
+        const isMobile = window.innerWidth < 900;
+
+        map = new mapboxgl.Map({
+            container: 'experience-globe',
+            projection: 'globe',
+            style: 'mapbox://styles/nikverweel/cmbo2y5th00tl01sc23c168hr',
+            zoom: isMobile ? 0.6 : 1
+        });
+
+        map.on('load', () => {
+            setMapTheme();
+            map.on('style.load', addMapElements);
+            spinGlobe();
+        });
+
+        const stopSpinning = () => {
+            userInteracted = true;
+            isSpinning = false;
+        };
+
+        map.on('mousedown', stopSpinning);
+        map.on('touchstart', stopSpinning);
+        map.on('dragstart', stopSpinning);
+        map.on('zoomstart', stopSpinning);
+    }
 
     function spinGlobe() {
+        if (!map) {
+            return;
+        }
+
         if (isSpinning && !userInteracted) {
             const center = map.getCenter();
             center.lng += rotationSpeed;
@@ -294,12 +332,61 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function navigateToLocation(location, marker) {
+        if (!map) {
+            return;
+        }
+
+        const currentScrollY = window.scrollY;
+
+        userInteracted = true;
+        isSpinning = false;
+
+        map.flyTo({
+            center: location.coordinates,
+            zoom: zoomToLevel,
+            speed: 0.8,
+            curve: 1.3,
+            essential: true
+        });
+
+        const popup = marker.getPopup();
+        if (popup) {
+            if (activePopup && activePopup !== popup) {
+                activePopup.remove();
+            }
+            popup.addTo(map);
+            activePopup = popup;
+        }
+
+        requestAnimationFrame(() => {
+            if (window.scrollY !== currentScrollY) {
+                window.scrollTo({
+                    top: currentScrollY,
+                    left: 0,
+                    behavior: 'auto'
+                });
+            }
+        });
+    }
+
     function addMapElements() {
+        if (!map) {
+            return;
+        }
+
         const markerColor = getComputedStyle(document.documentElement).getPropertyValue('--background-colour').trim();
+
+        mapMarkers.forEach(marker => marker.remove());
+        mapMarkers = [];
+
+        if (experienceIndex) {
+            experienceIndex.innerHTML = '';
+        }
         
         // Add markers and popups for each location
-        projectLocations.forEach(location => {
-            const popup = new mapboxgl.Popup({ offset: 25 })
+        projectLocations.forEach((location) => {
+            const popup = new mapboxgl.Popup({ offset: 25, focusAfterOpen: false })
                 .setHTML(`<h3>${location.title}</h3><p>${location.description}</p>`);
 
             const marker = new mapboxgl.Marker({ color: markerColor })
@@ -307,48 +394,65 @@ document.addEventListener('DOMContentLoaded', () => {
                 .setPopup(popup)
                 .addTo(map);
 
-            marker.getElement().addEventListener('click', () => {
-                userInteracted = true;
-                isSpinning = false;
+            mapMarkers.push(marker);
 
-                map.flyTo({
-                    center: location.coordinates,
-                    zoom: zoomToLevel,
-                    speed: 0.8,
-                    curve: 1.3,
-                    essential: true
-                });
+            marker.getElement().addEventListener('click', () => {
+                navigateToLocation(location, marker);
             });
+
+            if (experienceIndex) {
+                const listItem = document.createElement('li');
+                const listButton = document.createElement('button');
+                listButton.type = 'button';
+                listButton.className = 'experience-index-item';
+                listButton.textContent = location.title;
+
+                listButton.addEventListener('mousedown', (event) => {
+                    event.preventDefault();
+                });
+
+                listButton.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    navigateToLocation(location, marker);
+                });
+
+                listItem.appendChild(listButton);
+                experienceIndex.appendChild(listItem);
+            }
 
         });
     }
 
     // Change map style based on theme
     function setMapTheme() {
+        if (!map) {
+            return;
+        }
+
         const isDarkMode = document.documentElement.hasAttribute('data-theme');
         const styleUrl = isDarkMode ? 'mapbox://styles/nikverweel/cmbo43omv00nl01qx3m4aex3e' : 'mapbox://styles/nikverweel/cmbo2y5th00tl01sc23c168hr';
         map.setStyle(styleUrl);
-    }   
+    }
 
-    // Load the map
-    map.on('load', () => {
-        setMapTheme();
-        map.on('style.load', addMapElements);
+    if (experienceGlobe && 'IntersectionObserver' in window) {
+        const mapObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    initializeMap();
+                    observer.disconnect();
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '300px 0px',
+            threshold: 0.01
+        });
 
-        // Spin the globe
-        spinGlobe();
-    });
-
-    // Stop spinning on interaction
-    const stopSpinning = () => {
-        userInteracted = true;
-        isSpinning = false;
-    };
-
-    map.on('mousedown', stopSpinning);
-    map.on('touchstart', stopSpinning);
-    map.on('dragstart', stopSpinning);
-    map.on('zoomstart', stopSpinning);
+        mapObserver.observe(experienceGlobe);
+    } else {
+        initializeMap();
+    }
 
     // --- Set current year in footer ---
     const yearSpan = document.getElementById('year');
